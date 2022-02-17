@@ -12,7 +12,7 @@ public class PlatformMaker : AbstractCreator, IBeginDragHandler, IDragHandler, I
     void Start()
     {
         cam = Camera.main;
-        CreateObjectsOfPool(2, Vector3.zero, Quaternion.Euler(Vector3.zero));
+        CreateObjectsOfPool(2);
     }
     public void OnBeginDrag(PointerEventData eventData)
     {

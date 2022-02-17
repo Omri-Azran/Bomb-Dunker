@@ -8,7 +8,7 @@ public class FloatingEnemyCreator : AbstractEnemyCreator
     [SerializeField] int EnemiesToCreate = 5;
     private void Awake()
     {
-        CreateObjectsOfPool(EnemiesToCreate, Vector3.zero, Quaternion.identity);
+        CreateObjectsOfPool(EnemiesToCreate);
     }
     private void OnTriggerEnter(Collider other)
     {

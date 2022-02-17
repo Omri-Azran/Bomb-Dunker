@@ -5,12 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class ExplosiveBombCreatorButton : AbstractBombCreator, IDragHandler, IEndDragHandler
 {
-    [SerializeField] Transform TargetTransform;
-    Camera cam;
+
     private void Start()
     {
-        cam = Camera.main;
-        CreateObjectsOfPool(10,Vector3.zero,Quaternion.Euler(Vector3.zero));
+        CreateObjectsOfPool(10);
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -25,7 +23,7 @@ public class ExplosiveBombCreatorButton : AbstractBombCreator, IDragHandler, IEn
     }
     protected override AbstractBomb CreateBomb() 
     {
-        return SpawnFromPool(TargetTransform.position, TargetTransform.rotation).AddComponent<ExplosiveBomb>();
+        return SpawnFromPool(PositionToCreatePrefab.position, PositionToCreatePrefab.rotation).AddComponent<ExplosiveBomb>();
     }
     private void CalculateThrowForce()
     {

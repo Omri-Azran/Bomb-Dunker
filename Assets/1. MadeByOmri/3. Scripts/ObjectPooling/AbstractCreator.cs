@@ -5,15 +5,15 @@ using UnityEngine;
 public abstract class AbstractCreator : MonoBehaviour
 {
     [SerializeField] protected GameObject PrefabToCreate;
-
+    [SerializeField] protected Transform PositionToCreatePrefab;
     protected Queue<GameObject> Pool = new Queue<GameObject>();
-    protected virtual void CreateObjectsOfPool(int Size, Vector3 Position, Quaternion Rotation)
+    protected virtual void CreateObjectsOfPool(int Size)
     {
         GameObject PBContainer = new GameObject();
         PBContainer.name = PrefabToCreate.name + " Container";
         for (int i = 0; i < Size; i++)
         {
-            GameObject PB = Instantiate(PrefabToCreate,Position,Rotation,PBContainer.transform);
+            GameObject PB = Instantiate(PrefabToCreate,Vector3.zero,Quaternion.Euler(Vector3.zero),PBContainer.transform);
             PB.SetActive(false);
             Pool.Enqueue(PB);
         }
