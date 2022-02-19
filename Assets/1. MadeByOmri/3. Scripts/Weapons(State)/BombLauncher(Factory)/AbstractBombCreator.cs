@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractBombCreator : AbstractCreator
+public abstract class AbstractBombCreator : WeaponCreator
 
 {
     [SerializeField] protected float ThrowForceX = 25;

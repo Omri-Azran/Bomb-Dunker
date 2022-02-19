@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//must have rigidbody
+[RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
-    private void Update()
+    float Speed = 1f;
+    Rigidbody RB;
+    private void Awake()
     {
-        //rigidbody.movepos
-        transform.Translate(Vector3.up*Time.deltaTime*5);
+        RB = GetComponent<Rigidbody>();
+    }
+    private void FixedUpdate()
+    {
+        RB.MovePosition(transform.position+transform.TransformDirection(Vector3.up*Speed));
+        
     }
 }

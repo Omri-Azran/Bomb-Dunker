@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class ExplosiveBombCreatorButton : AbstractBombCreator, IDragHandler, IEndDragHandler
+public class ExplosiveBombCreator : AbstractBombCreator, IDragHandler, IEndDragHandler
 {
 
     private void Start()
