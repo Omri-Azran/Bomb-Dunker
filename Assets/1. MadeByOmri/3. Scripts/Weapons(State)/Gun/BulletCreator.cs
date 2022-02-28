@@ -3,39 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BulletCreator : WeaponCreator, IBeginDragHandler, IEndDragHandler
+public class BulletCreator : ProjectileCreator
 {
     bool IsShooting = false;
-    float SecondsToWait = 0.1f;
     Vector3 pos;
+    float angle;
     Joystick joystick;
     Rigidbody PrefabToCreateRB;
+    int BulletsToCreate = 5;
+    float TimeBetweenBullets = 0.1f;
     private void Awake()
     {
-        CreateObjectsOfPool(10);
-        joystick = GetComponent<FixedJoystick>();
+        CreateObjectsOfPool(BulletsToCreate*3);
+        joystick = GetComponentInParent<FixedJoystick>();
         PrefabToCreateRB = PrefabToCreate.GetComponent<Rigidbody>();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    private void Update()
+    {
+        Debug.Log(Angle(new Vector2(joystick.Horizontal, -joystick.Vertical)));
+    }
+    public override void CalculateShot()
     {
         IsShooting = true;
-        StartCoroutine(Shoot());
+        StartCoroutine(Calculation());
     }
-    public void OnEndDrag(PointerEventData eventData)
+
+    public override void ShootShot()
     {
         IsShooting = false;
+        StartCoroutine(ShootMultipleBullets());
         PrefabToCreateRB.velocity = Vector3.zero;
     }
-    IEnumerator Shoot()
+    IEnumerator Calculation()
     {
         while(IsShooting)
         {
             pos = new Vector3(PositionToCreatePrefab.transform.position.x - joystick.Horizontal, PositionToCreatePrefab.transform.position.y - joystick.Vertical, 0);
-            SpawnFromPool(pos, Quaternion.Euler(new Vector3(0,0,Angle(new Vector2(joystick.Horizontal, -joystick.Vertical))))).AddComponent<Bullet>();
-            yield return new WaitForSeconds(SecondsToWait);
+            angle = Angle(new Vector2(joystick.Horizontal, -joystick.Vertical));
+            yield return null;
         }
     }
+    IEnumerator ShootMultipleBullets()
+    {
+        for (int i = 0; i < BulletsToCreate; i++)
+        {
+            SpawnFromPool(pos, Quaternion.Euler(new Vector3(0, 0, angle))).AddComponent<Bullet>();
+            yield return new WaitForSeconds(TimeBetweenBullets);
+        }
+    }    
     public float Angle(Vector2 vector2)
     {
         if (vector2.x < 0)
@@ -47,5 +63,4 @@ public class BulletCreator : WeaponCreator, IBeginDragHandler, IEndDragHandler
             return Mathf.Atan2(vector2.x, vector2.y) * Mathf.Rad2Deg;
         }
     }
-
 }

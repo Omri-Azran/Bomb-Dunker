@@ -3,32 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-public class ExplosiveBombCreator : AbstractBombCreator, IDragHandler, IEndDragHandler
+public class ExplosiveBombCreator : AbstractBombCreator
 {
-
-    private void Start()
+    bool IsShooting = false;
+    private void Awake()
     {
         CreateObjectsOfPool(10);
     }
-    public void OnDrag(PointerEventData eventData)
-    {
-        CalculateThrowForce();
-    }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        ThrowBomb();
-        ThrowForceX = 0;
-        ThrowForceY = 0;
-    }
     protected override AbstractBomb CreateBomb() 
     {
         return SpawnFromPool(PositionToCreatePrefab.position, PositionToCreatePrefab.rotation).AddComponent<ExplosiveBomb>();
     }
-    private void CalculateThrowForce()
+
+    public override void CalculateShot()
     {
-        ThrowForceX = (transform.position.x - Input.mousePosition.x) * 0.1f;
-        ThrowForceY = (transform.position.y - Input.mousePosition.y) * 0.3f;
+        IsShooting = true;
+        StartCoroutine(ShootBomb());
     }
 
+    public override void ShootShot()
+    {
+        IsShooting = false;
+        CreateBomb().GetComponent<Rigidbody>().AddForce(new Vector3(ThrowForceX, ThrowForceY, 0), ForceMode.Impulse);
+        ThrowForceX = 0;
+        ThrowForceY = 0;
+    }
+    IEnumerator ShootBomb()
+    {
+        while(IsShooting)
+        {
+            ThrowForceX = (transform.position.x - Input.mousePosition.x) * 0.1f;
+            ThrowForceY = (transform.position.y - Input.mousePosition.y) * 0.3f;
+            yield return null;
+        }
+    }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponCreator : AbstractCreator
+public abstract class ProjectileCreator : AbstractCreator
 {
     protected WeaponChooser _weaponChooser;
 
@@ -10,4 +10,8 @@ public abstract class WeaponCreator : AbstractCreator
     {
         _weaponChooser = weaponChooser;
     }
+
+    public abstract void CalculateShot();
+    public abstract void ShootShot();
+
 }

@@ -2,36 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class WeaponChooser : MonoBehaviour
+public class WeaponChooser : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
-    private WeaponCreator _weaponCreator;
-    [SerializeField] GameObject[] Choosers;
+    private ProjectileCreator _ProjCreator;
+    [SerializeField] GameObject[] Creators;
 
-
-    //GUI doesnt get clicks from mouse. find another way to trigger the choosers to wake up
-    private void OnMouseDown()
+    private void Awake()
     {
-        Debug.Log("Hey");
-        foreach(GameObject chooser in Choosers)
-        {
-            chooser.SetActive(true);
-        }
+        _ProjCreator = Creators[0].GetComponent<ProjectileCreator>();
+        gameObject.GetComponent<Image>().color = _ProjCreator.GetComponent<Image>().color;
     }
-    private void OnMouseUp()
+    public WeaponChooser (ProjectileCreator ProjCreator)
     {
-        foreach (GameObject chooser in Choosers)
-        {
-            chooser.SetActive(false);
-        }
-    }
-    public WeaponChooser (WeaponCreator weaponCreator)
-    {
-        TransitionTo(weaponCreator);
+        TransitionTo(ProjCreator);
     }
 
-    public void TransitionTo(WeaponCreator weaponCreator)
+    public void TransitionTo(ProjectileCreator ProjCreator)
     {
-        _weaponCreator = weaponCreator;
+        _ProjCreator = ProjCreator;
+        gameObject.GetComponent<Image>().color = ProjCreator.GetComponent<Image>().color;
     }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        _ProjCreator.CalculateShot();
+    }
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        _ProjCreator.ShootShot();
+    }
+
 }
