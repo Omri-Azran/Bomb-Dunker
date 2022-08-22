@@ -18,6 +18,7 @@ public abstract class AbstractCreator : MonoBehaviour
             Pool.Enqueue(PB);
         }
     }
+    
     protected GameObject SpawnFromPool(Vector3 Position, Quaternion Rotation)
     {
         GameObject ObjToSpawn = Pool.Dequeue();
@@ -29,4 +30,5 @@ public abstract class AbstractCreator : MonoBehaviour
         Pool.Enqueue(ObjToSpawn);
         return ObjToSpawn;
     }
+    
 }

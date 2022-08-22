@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ClickFinder : MonoBehaviour
 {
-
     void Update()
     {
         //FindThisClick();

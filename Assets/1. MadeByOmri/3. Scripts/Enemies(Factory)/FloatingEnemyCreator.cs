@@ -18,13 +18,14 @@ public class FloatingEnemyCreator : AbstractEnemyCreator
             HasBeenCreated = true;
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<PlayerMovmentCC>() && HasBeenCreated == true)
-        {
-            HasBeenCreated = false;
-        }
-    }
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.GetComponent<PlayerMovmentCC>() && HasBeenCreated == true)
+    //    {
+    //        HasBeenCreated = false;
+    //    }
+    //}
 
     protected override AbstractEnemy CreateUniqueEnemy()
     {

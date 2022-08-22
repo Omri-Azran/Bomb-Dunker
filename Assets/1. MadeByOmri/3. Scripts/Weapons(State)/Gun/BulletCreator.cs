@@ -19,10 +19,6 @@ public class BulletCreator : ProjectileCreator
         PrefabToCreateRB = PrefabToCreate.GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
-        Debug.Log(Angle(new Vector2(joystick.Horizontal, -joystick.Vertical)));
-    }
     public override void CalculateShot()
     {
         IsShooting = true;
