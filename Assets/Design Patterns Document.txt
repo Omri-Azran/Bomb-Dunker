@@ -1,0 +1,27 @@
+https://docs.google.com/document/d/1a4p43xPH089e1N0QH64ut-9pGTahLrvTdK8KNFGVo6U/edit?usp=sharing
+
+
+
+	Chain Of Responsibility - a maze with gates and keys > key 1 open door 1,  keys 2,3 open door 2, keys 1,2,3  open door 3 and so on
+Command - 
+Iterator - 
+Mediator - 
+
+	Memento - undo platform building
+	Observer - when the player gets to the boss the boss event is triggered
+
+Strategy - 
+Bridge - 
+
+	Composite - boss that makes minions who make minions that do what the boss does
+	Decorator - gun upgrades
+	Facade - skill tree?
+	Flyweight - enemies?
+
+Proxy - 
+Abstract Factory - 
+	Builder - crafting system
+Singleton - 
+
+
+

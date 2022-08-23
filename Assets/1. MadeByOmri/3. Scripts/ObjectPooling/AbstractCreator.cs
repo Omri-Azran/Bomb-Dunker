@@ -9,11 +9,9 @@ public abstract class AbstractCreator : MonoBehaviour
     protected Queue<GameObject> Pool = new Queue<GameObject>();
     protected virtual void CreateObjectsOfPool(int Size)
     {
-        GameObject PBContainer = new GameObject();
-        PBContainer.name = PrefabToCreate.name + " Container";
         for (int i = 0; i < Size; i++)
         {
-            GameObject PB = Instantiate(PrefabToCreate,Vector3.zero,Quaternion.Euler(Vector3.zero),PBContainer.transform);
+            GameObject PB = Instantiate(PrefabToCreate,Vector3.zero,Quaternion.Euler(Vector3.zero),transform);
             PB.SetActive(false);
             Pool.Enqueue(PB);
         }

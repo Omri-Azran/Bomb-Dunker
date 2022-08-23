@@ -5,7 +5,7 @@ public class ClickFinder : MonoBehaviour
 {
     void Update()
     {
-        //FindThisClick();
+        FindThisClick();
     }
 
     private static void FindThisClick()

@@ -21,13 +21,15 @@ public class ExplosiveBomb : AbstractBomb
         Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius);
         foreach (Collider collider in colliders)
         {
+            //all enemies derive from AbstractEnemies
             if (collider.gameObject.GetComponent<AbstractEnemy>())
             {
                 Rigidbody enemyRB = collider.GetComponent<Rigidbody>();
                 if (enemyRB != null)
                 {
-                    collider.gameObject.GetComponent<AbstractEnemy>().StopMoving();
+                    collider.gameObject.GetComponent<FloatingEnemy>().StopMoving();
                     enemyRB.AddExplosionForce(ExplosionForce, transform.position, ExplosionRadius);
+                    enemyRB.transform.GetComponent<FloatingEnemy>().CreateDoorKey();
                 }
             }
         }

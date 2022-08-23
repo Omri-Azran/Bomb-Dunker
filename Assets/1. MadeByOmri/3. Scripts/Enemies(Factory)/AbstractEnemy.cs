@@ -10,8 +10,10 @@ public abstract class AbstractEnemy : MonoBehaviour
     float speed = 10f;
     Vector3 StartPos;
     bool MoveRight = true;
+    static protected int EnemyCount = 0;
     private void Awake()
     {
+        EnemyCount++;
         RB = GetComponent<Rigidbody>();
         StartPos = transform.position;
     }
@@ -47,4 +49,5 @@ public abstract class AbstractEnemy : MonoBehaviour
         RB.useGravity = false;
         RB.velocity = Vector3.zero;
     }
+
 }

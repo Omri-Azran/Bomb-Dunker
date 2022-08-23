@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 499321192040973241}
   - component: {fileID: 2651193898309843939}
   - component: {fileID: 2484757011253251627}
+  - component: {fileID: 3527480955495126286}
   m_Layer: 0
   m_Name: EnemyCreator
   m_TagString: Untagged
@@ -59,4 +60,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabToCreate: {fileID: 1012417250704462686, guid: 741b0a087bb44584b89bb7e69bff6697,
     type: 3}
-  PoolSize: 5
+  PositionToCreatePrefab: {fileID: 499321192040973241}
+  EnemiesToCreate: 5
+--- !u!114 &3527480955495126286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2788088048304704611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f8b83dbbb80055408bc7f19ceefb77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key: {fileID: 2564813670259613150, guid: 91d4c556d8e5b964a96edd1880585dec, type: 3}

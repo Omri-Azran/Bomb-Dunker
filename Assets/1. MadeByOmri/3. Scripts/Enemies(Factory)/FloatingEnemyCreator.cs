@@ -12,7 +12,7 @@ public class FloatingEnemyCreator : AbstractEnemyCreator
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerMovmentCC>() && HasBeenCreated == false)
+        if (other.gameObject.layer==6 /*player*/ && HasBeenCreated == false)
         {
             StartCoroutine(CreateEnemies(EnemiesToCreate, 0.2f));
             HasBeenCreated = true;
@@ -21,7 +21,7 @@ public class FloatingEnemyCreator : AbstractEnemyCreator
 
     //private void OnTriggerExit(Collider other)
     //{
-    //    if (other.GetComponent<PlayerMovmentCC>() && HasBeenCreated == true)
+    //    if (other.gameObject.layer==6 /*player*/ && HasBeenCreated == true)
     //    {
     //        HasBeenCreated = false;
     //    }
@@ -29,6 +29,6 @@ public class FloatingEnemyCreator : AbstractEnemyCreator
 
     protected override AbstractEnemy CreateUniqueEnemy()
     {
-        return SpawnFromPool(transform.position, Quaternion.identity).AddComponent<FloatingEnemy>();
+        return SpawnFromPool(transform.position, Quaternion.identity).AddComponent<FloatingEnemy>();       
     }
 }
